@@ -1,0 +1,22 @@
+---
+const res = await fetch("https://jobtrek.ch/wp-json/wp/v2/posts");
+const posts = await res.json();
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		{
+		  posts.map((post) => (
+			  <h2 set:html={post.title.rendered} />
+			  <p set:html={post.content.rendered} />
+		  ))
+		}
+  </body>
+</html>
