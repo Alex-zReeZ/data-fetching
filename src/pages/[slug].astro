@@ -25,9 +25,9 @@ export async function getStaticPaths() {
 <body class="bg-gray-100 text-gray-800 font-sans">
 
 <div class="flex flex-col mx-96 px-52 p-8 justify-center">
-    <h1 class="text-3xl font-bold mb-4" title="{post.title.rendered}" set:html={post.title.rendered}></h1>
+    <h1 class="text-3xl font-bold mb-4 mt-20" title="{post.title.rendered}" set:html={post.title.rendered}></h1>
     <article class="border-t-2 border-gray-400 pt-14">
-        <p class="text-2xl leading-relaxed text-justify" set:html={post.content.rendered}></p>
+        <div class="text-xl leading-relaxed text-justify" set:html={post.content.rendered}></div>
     </article>
 </div>
 
