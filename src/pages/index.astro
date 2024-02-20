@@ -34,7 +34,7 @@ const posts = await res.json();
                                     {post.title.rendered}
                                 </a>
                             </h3>
-                            <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600" set:html={post.content.rendered}>
+                            <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600" set:html={post.excerpt.rendered}>
 
                             </p>
                         </div>
