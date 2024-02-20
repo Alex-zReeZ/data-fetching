@@ -12,6 +12,7 @@ const posts = await res.json();
     <title>Jobtrek blog</title>
 </head>
 <body class="mr-10 ml-10">
+<img src="https://jobtrek.ch/wp-content/themes/jobtrek-theme/static/img/logo-white.svg" alt="Jobtrek logo" class="bg-black mx-auto ml-72 ">
 <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
@@ -29,9 +30,9 @@ const posts = await res.json();
                         </div>
                         <div class="group relative">
                             <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                <a href="#">
+                                <a href={post.slug} set:html={post.title.rendered}>
                                     <span class="absolute inset-0"></span>
-                                    {post.title.rendered}
+
                                 </a>
                             </h3>
                             <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600" set:html={post.excerpt.rendered}>
@@ -43,9 +44,9 @@ const posts = await res.json();
                                  class="h-10 w-10 rounded-full bg-gray-50">
                             <div class="text-sm leading-6">
                                 <p class="font-semibold text-gray-900">
-                                    <a href="#">
+                                    <a href="/404" set:html={post.author}>
                                         <span class="absolute inset-0"></span>
-                                        {post.author}
+
                                     </a>
                                 </p>
                                 <p class="text-gray-600">{post.author.role}</p>
