@@ -1,10 +1,12 @@
 ---
-const res = await fetch("https://jobtrek.ch/wp-json/wp/v2/posts");
-const posts = await res.json();
-
 import React from "react";
 import {} from "../components/ReactComponent.js";
 import DynamicButton from "../components/ReactComponent";
+import { ViewTransitions } from 'astro:transitions';
+
+
+const res = await fetch("https://jobtrek.ch/wp-json/wp/v2/posts");
+const posts = await res.json();
 ---
 
 <html lang="en">
@@ -13,6 +15,7 @@ import DynamicButton from "../components/ReactComponent";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
     <meta name="viewport" content="width=device-width"/>
     <meta name="generator" content={Astro.generator}/>
+    <ViewTransitions />
     <title>Jobtrek blog</title>
 </head>
 <body class="mr-10 ml-10">
