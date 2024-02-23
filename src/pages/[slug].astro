@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import Footer from "../components/Footer.astro";
 const {slug} = Astro.params;
 
@@ -21,6 +22,7 @@ export async function getStaticPaths() {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
     <meta name="viewport" content="width=device-width"/>
     <meta name="generator" content={Astro.generator}/>
+    <ViewTransitions />
     <title>Jobtrek blog</title>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
