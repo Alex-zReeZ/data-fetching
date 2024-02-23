@@ -1,5 +1,5 @@
 ---
-import Footer from "../../components/Footer.astro";
+import Footer from "../components/Footer.astro";
 const {slug} = Astro.params;
 
 let res = await fetch(`https://jobtrek.ch/wp-json/wp/v2/posts?slug=${slug}`);
