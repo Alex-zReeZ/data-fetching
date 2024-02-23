@@ -1,6 +1,10 @@
 ---
 const res = await fetch("https://jobtrek.ch/wp-json/wp/v2/posts");
 const posts = await res.json();
+
+import React from "react";
+import {} from "../components/ReactComponent.js";
+import DynamicButton from "../components/ReactComponent";
 ---
 
 <html lang="en">
@@ -14,48 +18,64 @@ const posts = await res.json();
 <body class="mr-10 ml-10">
 <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:mx-0">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our blog</h2>
-            <p class="mt-2 text-lg leading-8 text-gray-600">Read about all the people that we help !</p>
+        <div class="flex justify-between">
+            <div class="mx-auto max-w-2xl lg:mx-0">
+                <h2
+                        class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                >
+                    Our blog
+                </h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Read about all the people that we help !
+                </p>
+            </div>
+            <DynamicButton client:visible/>
         </div>
-        <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            {posts.map((post) => (
-                    <article id={post.id}
-                             class="flex max-w-xl flex-col items-start justify-between p-5 border-gray-400 transition hover:border-l-8 hover:border-b-8 hover:rounded-l-2xl hover:rounded-b-2xl duration-300 ease-in">
-                        <div class="flex items-center gap-x-4 text-xs">
-                            <time datetime={post.date} class="text-gray-500">{post.date}</time>
-                        </div>
-                        <div class="group relative">
-                            <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                <a href={post.slug} set:html={post.title.rendered}>
-                                    <span class="absolute inset-0"></span>
-
-                                </a>
-                            </h3>
-                            <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600" set:html={post.excerpt.rendered}>
-
-                            </p>
-                        </div>
-                        <div class="relative mt-8 flex items-center gap-x-4">
-                            <img src="https://xsgames.co/randomusers/avatar.php?g=male" alt={post.author}
-                                 class="h-10 w-10 rounded-full bg-gray-50">
-                            <div class="text-sm leading-6">
-                                <p class="font-semibold text-gray-900">
-                                    <a href="/404" set:html={post.author}>
-                                        <span class="absolute inset-0"></span>
-
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">{post.author.role}</p>
+        <div
+                class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+        >
+            {
+                posts.map((post) => (
+                        <article
+                                id={post.id}
+                                class="flex max-w-xl flex-col items-start justify-between p-5 border-gray-400 transition hover:border-l-8 hover:border-b-8 hover:rounded-l-2xl hover:rounded-b-2xl duration-300 ease-in"
+                        >
+                            <div class="flex items-center gap-x-4 text-xs">
+                                <time datetime={post.date} class="text-gray-500">
+                                    {post.date}
+                                </time>
                             </div>
-                        </div>
-                    </article>
-            ))}
+                            <div class="group relative">
+                                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                    <a href={post.slug} set:html={post.title.rendered}>
+                                        <span class="absolute inset-0"/>
+                                    </a>
+                                </h3>
+                                <p
+                                        class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600"
+                                        set:html={post.excerpt.rendered}
+                                ></p>
+                            </div>
+                            <div class="relative mt-8 flex items-center gap-x-4">
+                                <img
+                                        src="https://xsgames.co/randomusers/avatar.php?g=male"
+                                        alt={post.author}
+                                        class="h-10 w-10 rounded-full bg-gray-50"
+                                />
+                                <div class="text-sm leading-6">
+                                    <p class="font-semibold text-gray-900">
+                                        <a href="/404" set:html={post.author}>
+                                            <span class="absolute inset-0"/>
+                                        </a>
+                                    </p>
+                                    <p class="text-gray-600">{post.author.role}</p>
+                                </div>
+                            </div>
+                        </article>
+                ))
+            }
         </div>
     </div>
 </div>
-
-
-
 </body>
 </html>
