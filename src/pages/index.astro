@@ -3,9 +3,8 @@ import DynamicButton from "../components/ReactComponent";
 import { ViewTransitions } from 'astro:transitions';
 import SplitDate from "../components/SplitDate";
 
-const res = await fetch("https://jobtrek.ch/wp-json/wp/v2/posts");
+const res = await fetch("https://jobtrek.ch/wp-json/wp/v2/posts", { timeout: 15000 });
 const posts = await res.json()
-
 ---
 
 <html lang="en">
