@@ -1,11 +1,11 @@
 ---
-import {} from "../components/ReactComponent.js";
 import DynamicButton from "../components/ReactComponent";
 import { ViewTransitions } from 'astro:transitions';
-
+import SplitDate from "../components/SplitDate";
 
 const res = await fetch("https://jobtrek.ch/wp-json/wp/v2/posts");
-const posts = await res.json();
+const posts = await res.json()
+
 ---
 
 <html lang="en">
@@ -44,7 +44,7 @@ const posts = await res.json();
                         >
                             <div class="flex items-center gap-x-4 text-xs">
                                 <time datetime={post.date} class="text-gray-500">
-                                    {post.date}
+                                    {post.date ? <SplitDate date={post.date} /> : <p>No date provided</p>}
                                 </time>
                             </div>
                             <div class="group relative">
