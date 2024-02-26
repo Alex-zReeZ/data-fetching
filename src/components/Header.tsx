@@ -33,14 +33,13 @@ const Navbar = () => {
         
             <CSSTransition
                 in={isOpen}
-                timeout={300}
+                timeout={1000}
                 classNames={{
                     enter: "opacity-0 transform -translate-x-full",
                     enterActive: "opacity-100 transform translate-x-0 transition-all duration-500 ease-in-out",
                     exit: "opacity-100 transform translate-x-0",
                     exitActive: "opacity-0 transform -translate-x-full transition-all duration-500 ease-in-out"
                 }}
-                unmountOnExit
             >
                 <ul
                     className={`${
