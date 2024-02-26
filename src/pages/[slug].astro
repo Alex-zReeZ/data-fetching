@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import Footer from "../components/Footer.astro";
+import Header from "../components/Header.tsx";
 const {slug} = Astro.params;
 
 let res = await fetch(`https://jobtrek.ch/wp-json/wp/v2/posts?slug=${slug}`);
@@ -26,6 +27,7 @@ export async function getStaticPaths() {
     <title>Jobtrek blog</title>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
+    <Header client:load />
 
 <div class="flex flex-col mx-96 px-3§2 p-8 justify-center">
     <h1 class="text-3xl font-bold mb-4 mt-20" title="{post.title.rendered}"
