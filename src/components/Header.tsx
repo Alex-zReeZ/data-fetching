@@ -10,7 +10,7 @@ const Navbar = () => {
 
     return (
         <nav className={`flex ${isOpen ? 'flex-col gap-5' : 'flex-row '} items-center justify-between p-6 bg-gray-800 text-white w-full`}>
-            <img src="/public/favicon.svg" alt="logo" className="w-12"/>
+            <img src="/favicon.svg" alt="logo" className="w-12"/>
 
             <div
                 id="menu"
