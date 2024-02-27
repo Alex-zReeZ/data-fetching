@@ -1,6 +1,7 @@
 ---
-import {getSession} from 'auth-astro/server';
-import {ViewTransitions} from "astro:transitions";
+import { getSession } from 'auth-astro/server';
+import { ViewTransitions } from "astro:transitions";
+import Header from '../components/Header.tsx';
 
 const session = await getSession(Astro.request);
 ---
@@ -15,22 +16,28 @@ const session = await getSession(Astro.request);
     <title>Jobtrek blog</title>
 </head>
 <body>
-<section class="flex gap-10 justify-center p-10 bg-gray-800 text-white">
-    <button id="login">Login</button>
-    <button id="logout">Logout</button>
+    <Header client:load/>
+    <section class="flex flex-col justify-center items-center h-fit mt-64 text-center">
+        <div>
+            {
+                session ? (
+                        <p class="mt-4">Welcome {session.user?.name}</p>
+                ) : (
+                        <p class="mt-4">You are currently not logged in</p>
+                )
+            }
+        </div>
+        <div class="flex gap-10 p-10">
+            <button id="login" class="bg-blue-500 text-white px-4 py-2 rounded">Login</button>
+            <button id="logout" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
+        </div>
 
-    <script>
-        const {signIn, signOut} = await import("auth-astro/client")
-        document.querySelector("#login").onclick = () => signIn("github")
-        document.querySelector("#logout").onclick = () => signOut()
-    </script>
-    {
-        session ? (
-                <p>Welcome {session.user?.name}</p>
-        ) : (
-                <p>Not logged in</p>
-        )
-    }
-</section>
+    </section>
 </body>
+<script>
+
+    const {signIn} = await import("auth-astro/client")
+    document.querySelector("#login").onclick = () => signIn("github")
+    document.querySelector("#logout").onclick = () => signOut()
+</script>
 </html>
