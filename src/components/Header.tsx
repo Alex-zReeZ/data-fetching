@@ -10,8 +10,8 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className={`flex ${isOpen ? 'block pl-40' : 'flex-row '} p-6 bg-gray-800 text-white w-full`}>
-                <img src="/favicon.svg" alt="logo" className="w-12" />
+            <nav className={`flex ${isOpen ? 'block pl-40' : 'flex-row '} p-6 bg-gray-800 text-white w-full transition-all duration-300`}>
+                <img src="/favicon.svg" alt="logo" className="w-12 transform transition-all ease-in-out" />
 
                 <div
                     id="menu"
@@ -35,9 +35,10 @@ const Navbar = () => {
             </nav>
 
             <ul
-                className={`${isOpen ? "transform translate-x-0 transition-all duration-500 ease-in-out flex gap-10 flex-col text-xl text-center mt-24 pt-20 z-30 lg:static lg:mt-0 lg:pt-0 lg:translate-x-0 lg:flex lg:items-center lg:space-x-8 absolute bg-gray-800 text-white w-96 h-full left-0 top-0 overflow-auto" 
-                : 
-                "-translate-x-full translate-y-30 transition-all duration-500 ease-in-out"
+                className={`${isOpen ? 
+                    "transform translate-x-0 transition-all duration-500 ease-in-out flex gap-10 flex-col text-xl text-center mt-24 pt-20 z-30 lg:static lg:mt-0 lg:pt-0 lg:translate-x-0 lg:flex lg:items-center lg:space-x-8 absolute bg-gray-800 text-white w-96 h-full left-0 top-0 overflow-auto" 
+                    : 
+                    "-translate-x-full transition-all duration-500 ease-in-out flex gap-10 flex-col text-xl text-center mt-24 pt-20 z-30 lg:static lg:mt-0 lg:pt-0 lg:translate-x-0 lg:flex lg:items-center lg:space-x-8 absolute bg-gray-800 text-white w-96 h-full left-0 top-0 overflow-auto"
                 } 
                 lg:flex lg:items-center lg:space-x-8`
             }
