@@ -8,7 +8,7 @@ const DynamicButton = () => {
     };
 
     return (
-        <div className="bg-black text-white p-3 border-r-2 rounded-lg max-w-56 text-center flex justify-center">
+        <div className="bg-black text-white p-3 border-r-2 rounded-lg max-w-56 text-center flex justify-center sm:mr-36">
             <button onClick={incrementCount}> You clicked on me {count} times!</button>
         </div>
     );

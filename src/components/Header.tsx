@@ -10,8 +10,8 @@ const Navbar = () => {
     return (
         <>
             <nav
-                className={`flex ${isOpen ? 'block pl-40' : 'flex-row '} p-6 bg-gray-800 text-white w-full transition-all duration-300`}>
-                <img src="/favicon.svg" alt="logo" className="w-12 transform transition-all ease-in-out"/>
+                className={`flex ${isOpen ? 'block pr-10' : 'flex-row '} p-6 bg-gray-800 text-white w-full transition-all duration-300`}>
+                <img src="/favicon.svg" alt="logo" className="w-12 sm:ml-32 lg:ml-0"/>
 
                 <div
                     id="menu"
@@ -19,13 +19,13 @@ const Navbar = () => {
                     className="lg:hidden cursor-pointer"
                 >
                     {isOpen ? (
-                        <div className="absolute right-10 top-10 ">
+                        <div className="absolute right-6 top-9 ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                className="h-6 w-6 text-white right-10 top-12">
+                                className="h-6 w-6 text-white right-10 top-12 sm:mr-36">
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
@@ -33,7 +33,7 @@ const Navbar = () => {
                             </svg>
                         </div>
                     ) : (
-                        <div className="absolute right-10 top-12">
+                        <div className="absolute right-10 top-10 sm:pr-32">
                             <div className="w-6 h-0.5 bg-white mb-1"></div>
                             <div className="w-6 h-0.5 bg-white mb-1"></div>
                             <div className="w-6 h-0.5 bg-white"></div>
