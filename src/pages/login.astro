@@ -1,0 +1,36 @@
+---
+import {getSession} from 'auth-astro/server';
+import {ViewTransitions} from "astro:transitions";
+
+const session = await getSession(Astro.request);
+---
+
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="generator" content={Astro.generator}/>
+    <ViewTransitions/>
+    <title>Jobtrek blog</title>
+</head>
+<body>
+<section class="flex gap-10 justify-center p-10 bg-gray-800 text-white">
+    <button id="login">Login</button>
+    <button id="logout">Logout</button>
+
+    <script>
+        const {signIn, signOut} = await import("auth-astro/client")
+        document.querySelector("#login").onclick = () => signIn("github")
+        document.querySelector("#logout").onclick = () => signOut()
+    </script>
+    {
+        session ? (
+                <p>Welcome {session.user?.name}</p>
+        ) : (
+                <p>Not logged in</p>
+        )
+    }
+</section>
+</body>
+</html>
