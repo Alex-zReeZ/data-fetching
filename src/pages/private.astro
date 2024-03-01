@@ -1,0 +1,43 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Header from "../components/Header";
+import { getSession } from "auth-astro/server";
+
+const session = await getSession(Astro.request);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <ViewTransitions />
+    <title>Jobtrek blog</title>
+  </head>
+  <body>
+    <Header client:load />
+
+  
+    <div class="flex mt-32 ml-24 ">
+      <img class="rounded-full bg-gray-50" src={session.user.image} alt="User profile picture">
+      <h1 class="text-4xl font-bold mt-10 ml-10 pt-64">About { session.user.name}</h1>
+    </div>
+    
+    
+    
+
+    
+    
+    <ul class="flex m-10 gap-10">
+      <div class="flex flex-col mt-40 gap-10">
+        <li>
+            <p>Your Name : {session.user.name}</p>
+        </li>
+        <li>
+          <p>Your Email : {session.user.email}</p>
+        </li>
+      </div>
+    </ul>
+  </body>
+</html>
