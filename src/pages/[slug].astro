@@ -1,46 +1,48 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.tsx";
-const {slug} = Astro.params;
+const { slug } = Astro.params;
 
 let res = await fetch(`https://jobtrek.ch/wp-json/wp/v2/posts?slug=${slug}`);
 let [post] = await res.json();
 
 export async function getStaticPaths() {
-    let data = await fetch("https://jobtrek.ch/wp-json/wp/v2/posts");
-    let posts = await data.json();
+  let data = await fetch("https://jobtrek.ch/wp-json/wp/v2/posts");
+  let posts = await data.json();
 
-    return posts.map((post) => ({
-        params: {slug: post.slug},
-        props: {post: post},
-    }));
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post: post },
+  }));
 }
 ---
+
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <meta name="viewport" content="width=device-width"/>
-    <meta name="generator" content={Astro.generator}/>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
     <ViewTransitions />
     <title>Jobtrek blog</title>
-</head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+  </head>
+  <body class="bg-gray-100 text-gray-800 font-sans">
     <Header client:load />
 
-<div class="flex flex-col mx-96 px-32 p-8 justify-center sm:mx-10">
-    <h1 class="text-3xl font-bold mb-4 mt-20" title="{post.title.rendered}"
-        set:html={post.title.rendered}>
-
-    </h1>
-    <article class="border-t-2 border-gray-400 pt-14">
-        <div class="text-xl leading-relaxed text-justify"
-             set:html={post.content.rendered}>
-
-        </div>
-    </article>
-</div>
-
-<Footer/>
-</body>
+    <div class="flex flex-col mx-96 px-32 p-8 justify-center sm:mx-10">
+      <h1
+        class="text-3xl font-bold mb-4 mt-20"
+        title?="{post?.title?.rendered}"
+        set:html={post?.title?.rendered}
+      />
+      <article class="border-t-2 border-gray-400 pt-14">
+        <div
+          class="text-xl leading-relaxed text-justify"
+          set:html={post?.content?.rendered}
+        />
+      </article>
+    </div>
+    <Footer />
+  </body>
+</html>
