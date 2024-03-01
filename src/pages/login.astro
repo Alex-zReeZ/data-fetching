@@ -35,9 +35,19 @@ const session = await getSession(Astro.request);
     </section>
 </body>
 <script>
+    const { signIn, signOut } = await import("auth-astro/client")
 
-    const {signIn} = await import("auth-astro/client")
-    document.querySelector("#login").onclick = () => signIn("github")
-    document.querySelector("#logout").onclick = () => signOut()
+    window.addEventListener('load', (event) => {
+        const loginButton = document.querySelector("#login");
+        const logoutButton = document.querySelector("#logout");
+
+        if (loginButton) {
+            loginButton.addEventListener('click', () => signIn("github"));
+        }
+
+        if (logoutButton) {
+            logoutButton.addEventListener('click', () => signOut());
+        }
+    });
 </script>
 </html>
