@@ -1,53 +1,63 @@
 ---
-import { getSession } from 'auth-astro/server';
+import { getSession } from "auth-astro/server";
 import { ViewTransitions } from "astro:transitions";
-import Header from '../components/Header.tsx';
+import Header from "../components/Header.tsx";
 
 const session = await getSession(Astro.request);
 ---
 
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <meta name="viewport" content="width=device-width"/>
-    <meta name="generator" content={Astro.generator}/>
-    <ViewTransitions/>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <ViewTransitions />
     <title>Jobtrek blog</title>
-</head>
-<body>
-    <Header client:load/>
-    <section class="flex flex-col justify-center items-center h-fit mt-64 text-center">
-        <div>
-            {
-                session ? (
-                        <p class="mt-4">Welcome {session.user?.name}</p>
-                ) : (
-                        <p class="mt-4">You are currently not logged in</p>
-                )
-            }
-        </div>
-        <div class="flex gap-10 p-10">
-            <button id="login" class="bg-blue-500 text-white px-4 py-2 rounded">Login</button>
-            <button id="logout" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
-        </div>
-
+  </head>
+  <body>
+    <Header client:load />
+    <section
+      class="flex flex-col justify-center items-center h-fit mt-64 text-center"
+    >
+      <div>
+        {
+          session ? (
+            <p class="mt-4">Welcome {session.user?.name}</p>
+          ) : (
+            <p class="mt-4">You are currently not logged in</p>
+          )
+        }
+      </div>
+      <div class="flex gap-10 p-10">
+        {
+          session ? (
+            <button id="logout" class="bg-red-500 text-white px-4 py-2 rounded">
+              Logout
+            </button>
+          ) : (
+            <button id="login" class="bg-blue-500 text-white px-4 py-2 rounded">
+              Login
+            </button>
+          )
+        }
+      </div>
     </section>
-</body>
-<script>
-    const { signIn, signOut } = await import("auth-astro/client")
+    <script>
+      const { signIn, signOut } = await import("auth-astro/client");
 
-    window.addEventListener('load', (event) => {
+      window.addEventListener("load", (event) => {
         const loginButton = document.querySelector("#login");
         const logoutButton = document.querySelector("#logout");
 
         if (loginButton) {
-            loginButton.addEventListener('click', () => signIn("github"));
+          loginButton.addEventListener("click", () => signIn("github"));
         }
 
         if (logoutButton) {
-            logoutButton.addEventListener('click', () => signOut());
+          logoutButton.addEventListener("click", () => signOut());
         }
-    });
-</script>
+      });
+    </script>
+  </body>
 </html>
