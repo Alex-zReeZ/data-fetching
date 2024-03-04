@@ -17,6 +17,7 @@
     "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",
     "astro": "^4.4.0",
+    "astro-i18n": "^2.2.4",
     "auth-astro": "^4.1.1",
     "next-auth": "^4.24.6",
     "react": "^18.2.0",
