@@ -29,10 +29,10 @@ const session = await getSession(Astro.request)
                 <h2
                         class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
                 >
-                    Our blog
+                    Notre blog
                 </h2>
                 <p class="mt-2 text-lg leading-8 text-gray-600">
-                    Read about all the people that we help !
+                    Lisez a propos de toutes les personnes que nous aidons !
                 </p>
             </div>
             <DynamicButton client:load/>
@@ -40,7 +40,7 @@ const session = await getSession(Astro.request)
             {
                 session ? 
                 <div class="text-center pt-20">
-                    <a class="cursor-pointer underline border-2 border-black rounded p-5 bg-amber-500 text-gray-800" href="/private">Your personnal page</a> 
+                    <a class="cursor-pointer underline border-2 border-black rounded p-5 bg-amber-500 text-gray-800" href="/private">Votre page personnel</a>
                 </div>
                 : 
                 <p></p>
@@ -56,7 +56,7 @@ const session = await getSession(Astro.request)
                         >
                             <div class="flex items-center gap-x-4 text-xs">
                                 <time datetime={post.date} class="text-gray-500">
-                                    {post.date ? <SplitDate date={post.date} /> : <p>No date provided</p>}
+                                    {post.date ? <SplitDate date={post.date} /> : <p>Aucune date donné</p>}
                                 </time>
                             </div>
                             <div class="group relative">
