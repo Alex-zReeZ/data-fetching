@@ -33,11 +33,11 @@ const session = await getSession(Astro.request);
         {
           session ? (
             <button id="logout" class="bg-red-500 text-white px-4 py-2 rounded">
-              Se connecter
+              Se deconnecter
             </button>
           ) : (
             <button id="login" class="bg-blue-500 text-white px-4 py-2 rounded">
-              Se deconnecter
+              Se connecter
             </button>
           )
         }
