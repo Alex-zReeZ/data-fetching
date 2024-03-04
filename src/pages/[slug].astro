@@ -33,7 +33,6 @@ export async function getStaticPaths() {
     <div class="flex flex-col mx-96 px-32 p-8 justify-center sm:mx-10">
       <h1
         class="text-3xl font-bold mb-4 mt-20"
-        title?="{post?.title?.rendered}"
         set:html={post?.title?.rendered}
       />
       <article class="border-t-2 border-gray-400 pt-14">
