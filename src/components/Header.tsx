@@ -1,26 +1,30 @@
-import { useState } from "react";
+import {useState} from "react";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [lang, setLang] = useState('fr');
+    const [language, setLanguage] = useState('Français');
+    const [aboutURL, setAboutURL] = useState(getRelativeLocaleUrl("fr"));
+
+    const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setLanguage(event.target.value);
+        if (event.target.value === 'Français') {
+            setAboutURL(getRelativeLocaleUrl("fr"));
+        } else if (event.target.value === 'Anglais') {
+            setAboutURL(getRelativeLocaleUrl("en"));
+        }
+    }
 
     const toggleNavbar = () => {
         setIsOpen(!isOpen);
     };
-
-    const getLangPrefix = () => (lang === 'fr' ? '' : '/en');
-
     return (
         <>
             <nav
                 className={`flex ${isOpen ? 'block pr-10 ' : 'flex-row px-80'} p-6 bg-gray-800 text-white w-full transition-all duration-300`}>
-                <img src="/favicon.svg" alt="logo" className="w-12 sm:ml-32 lg:ml-0" />
+                <img src="/favicon.svg" alt="logo" className="w-12 sm:ml-32 lg:ml-0"/>
 
-                <div
-                    id="menu"
-                    onClick={() => toggleNavbar()}
-                    className="lg:hidden cursor-pointer"
-                >
+                <div id="menu" onClick={() => toggleNavbar()} className="lg:hidden cursor-pointer">
                     {isOpen ? (
                         <div className="absolute right-6 top-9 ">
                             <svg
@@ -32,7 +36,7 @@ const Navbar = () => {
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
-                                    strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
                             </svg>
                         </div>
                     ) : (
@@ -53,20 +57,21 @@ const Navbar = () => {
                     }
                 >
                     <li>
-                        <a href={`${getLangPrefix()}/`} className="hover:text-gray-400">Home</a>
+                        <a href={`${aboutURL}/`} className="hover:text-gray-400">Home</a>
                     </li>
                     <li>
-                        <a href={`${getLangPrefix()}/login`} className="hover:text-gray-400">Login Page</a>
+                        <a href={`${aboutURL}login`} className="hover:text-gray-400">Login Page</a>
                     </li>
                     <li>
-                        <a href={`${getLangPrefix()}/404`} className="hover:text-gray-400">Contact</a>
+                        <a href={`${aboutURL}404`} className="hover:text-gray-400">Contact</a>
                     </li>
                 </ul>
-                <button className="">
-                            <a href={`${getLangPrefix()}/`} onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}>
-                                {getLangPrefix() === '/en' ? 'Français' : 'English'}
-                            </a>
-                        </button>
+                <div>
+                    <select value={language} onChange={handleLanguageChange} className="bg-gray-800 mt-3 cursor-pointer">
+                        <option value="Français">Français</option>
+                        <option value="Anglais">Anglais</option>
+                    </select>
+                </div>
             </nav>
 
             <ul
@@ -79,24 +84,18 @@ const Navbar = () => {
                 }
             >
                 <li>
-                    <a href="/" className="hover:text-gray-400">Home</a>
+                    <a href={`${aboutURL}/`} className="hover:text-gray-400">Home</a>
                 </li>
                 <li>
-                    <a href="/login" className="hover:text-gray-400">Login Page</a>
+                    <a href={`${aboutURL}login`} className="hover:text-gray-400">Login Page</a>
                 </li>
                 <li>
-                    <a href="#" className="hover:text-gray-400">Contact</a>
-                </li>
-                <li>
-                    <button className="">
-                        <a href="/">
-                            test
-                        </a>
-                    </button>
+                    <a href="${aboutURL}/404" className="hover:text-gray-400">Contact</a>
                 </li>
             </ul>
         </>
     );
 };
+
 
 export default Navbar;

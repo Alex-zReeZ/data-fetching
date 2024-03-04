@@ -11,10 +11,13 @@ export default defineConfig({
   output: "server",
   adapter: netlify(),
   i18n: {
-    locales: ['fr', 'en'],
-    defaultLocale: 'fr'
-  },
-  routing: {
-    prefixDefaultLocale: false
+    defaultLocale: "fr",
+    locales: ["es", "en", {
+      path: "french",
+      codes: ["fr", "fr-BR", "fr-CA"]
+    }],
+    routing: {
+      prefixDefaultLocale: false
+    }
   }
 });
