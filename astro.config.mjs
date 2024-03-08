@@ -12,7 +12,7 @@ export default defineConfig({
   adapter: netlify(),
   i18n: {
     defaultLocale: "fr",
-    locales: ["es", "en", {
+    locales: ["fr", "en", {
       path: "french",
       codes: ["fr", "fr-BR", "fr-CA"]
     }],
