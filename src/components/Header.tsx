@@ -75,7 +75,6 @@ const Navbar = () => {
                         onChange={handleLanguageChange}
                         className="bg-gray-800 mt-3 cursor-pointer"
                     >
-                        <option>Langue</option>
                         <option value="Français">Français</option>
                         <option value="English">English</option>
                     </select>
