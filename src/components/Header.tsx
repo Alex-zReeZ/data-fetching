@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
-const Navbar = () => {    
+const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [language, setLanguage] = useState("Français");
-    const [aboutURL, setAboutURL] = useState(getRelativeLocaleUrl("fr"));
+    const [language, setLanguage] = useState('');
+    const [aboutURL, setAboutURL] = useState('');
 
     const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setLanguage(event.target.value);
+        let newAboutURL;
         if (event.target.value === 'Français') {
-            setAboutURL(getRelativeLocaleUrl("fr"));
-            window.location.href = getRelativeLocaleUrl("fr");
+            newAboutURL = getRelativeLocaleUrl("fr");
         } else if (event.target.value === 'English') {
-            setAboutURL(getRelativeLocaleUrl("en"));
-            window.location.href = getRelativeLocaleUrl("en");
+            newAboutURL = getRelativeLocaleUrl("en");
         }
+        setAboutURL(newAboutURL);
+        window.location.href = newAboutURL;
     }
 
     const toggleNavbar = () => {
