@@ -1,28 +1,31 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
-const Navbar = () => {
+const Navbar = () => {    
     const [isOpen, setIsOpen] = useState(false);
-    const [language, setLanguage] = useState('Français');
+    const [language, setLanguage] = useState("");
     const [aboutURL, setAboutURL] = useState(getRelativeLocaleUrl("fr"));
 
     const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setLanguage(event.target.value);
         if (event.target.value === 'Français') {
             setAboutURL(getRelativeLocaleUrl("fr"));
-        } else if (event.target.value === 'Anglais') {
+            window.location.href = getRelativeLocaleUrl("fr");
+        } else if (event.target.value === 'English') {
             setAboutURL(getRelativeLocaleUrl("en"));
+            window.location.href = getRelativeLocaleUrl("en");
         }
     }
 
     const toggleNavbar = () => {
         setIsOpen(!isOpen);
     };
+
     return (
         <>
             <nav
                 className={`flex ${isOpen ? 'block pr-10 ' : 'flex-row px-80'} p-6 bg-gray-800 text-white w-full transition-all duration-300`}>
-                <img src="/favicon.svg" alt="logo" className="w-12 sm:ml-32 lg:ml-0"/>
+                <img src="/favicon.svg" alt="logo" className="w-12 sm:ml-32 lg:ml-0" />
 
                 <div id="menu" onClick={() => toggleNavbar()} className="lg:hidden cursor-pointer">
                     {isOpen ? (
@@ -36,7 +39,7 @@ const Navbar = () => {
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
-                                    strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
+                                    strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </div>
                     ) : (
@@ -67,9 +70,14 @@ const Navbar = () => {
                     </li>
                 </ul>
                 <div>
-                    <select value={language} onChange={handleLanguageChange} className="bg-gray-800 mt-3 cursor-pointer">
+                    <select
+                        value={language}
+                        onChange={handleLanguageChange}
+                        className="bg-gray-800 mt-3 cursor-pointer"
+                    >
+                        <option>Langue</option>
                         <option value="Français">Français</option>
-                        <option value="Anglais">Anglais</option>
+                        <option value="English">English</option>
                     </select>
                 </div>
             </nav>
