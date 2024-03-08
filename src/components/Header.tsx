@@ -3,7 +3,7 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 
 const Navbar = () => {    
     const [isOpen, setIsOpen] = useState(false);
-    const [language, setLanguage] = useState("");
+    const [language, setLanguage] = useState("Français");
     const [aboutURL, setAboutURL] = useState(getRelativeLocaleUrl("fr"));
 
     const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -75,6 +75,7 @@ const Navbar = () => {
                         onChange={handleLanguageChange}
                         className="bg-gray-800 mt-3 cursor-pointer"
                     >
+                        <option hidden>Language</option>
                         <option value="Français">Français</option>
                         <option value="English">English</option>
                     </select>
