@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 const Navbar = () => {
@@ -57,7 +57,7 @@ const Navbar = () => {
                     }
                 >
                     <li>
-                        <a href={`${aboutURL}/`} className="hover:text-gray-400">Home</a>
+                        <a href={`${aboutURL}`} className="hover:text-gray-400">Home</a>
                     </li>
                     <li>
                         <a href={`${aboutURL}login`} className="hover:text-gray-400">Login Page</a>
@@ -84,13 +84,13 @@ const Navbar = () => {
                 }
             >
                 <li>
-                    <a href={`${aboutURL}/`} className="hover:text-gray-400">Home</a>
+                    <a href={`${aboutURL}`} className="hover:text-gray-400">Home</a>
                 </li>
                 <li>
                     <a href={`${aboutURL}login`} className="hover:text-gray-400">Login Page</a>
                 </li>
                 <li>
-                    <a href="${aboutURL}/404" className="hover:text-gray-400">Contact</a>
+                    <a href={`${aboutURL}404`} className="hover:text-gray-400">Contact</a>
                 </li>
             </ul>
         </>
